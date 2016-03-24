@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+<bean id="quartzScheduler"
+      class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+    <property name="dataSource">
+        <ref bean="dataSource"/>
+    </property>
+    <property name="schedulerName" value="Mscheduler"/>
+    <property name="configLocation" value="classpath:scheduler/quartz.properties">
+    </property>
+    <property name="applicationContextSchedulerContextKey" value="applicationContextKey"/>
+    <property name="autoStartup" value="true"/>
+</bean>
+
+<bean id="jobSchedulerService"
+      class="com.qtong.core.service.scheduler.impl.JobSchedulerServiceImpl">
+    <property name="scheduler">
+        <ref bean="quartzScheduler"/>
+    </property>
+</bean>
+
+</beans>

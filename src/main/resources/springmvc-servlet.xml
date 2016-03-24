@@ -18,22 +18,24 @@
         <property name="viewClass"
                   value="org.springframework.web.servlet.view.JstlView"/>
     </bean>
-
+    <mvc:interceptors>
+        <bean id="userAccessInterceptor" class="com.qtong.core.web.interceptor.UserAccessInterceptor"></bean>
+    </mvc:interceptors>
 
     <!--<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">-->
-        <!--&lt;!&ndash;定义默认的异常处理页面，当该异常类型的注册时使用&ndash;&gt;-->
-        <!--<property name="defaultErrorView" value="error"></property>-->
-        <!--&lt;!&ndash;定义异常处理页面用来获取异常信息的变量名，默认名为exception &ndash;&gt;-->
-        <!--<property name="exceptionAttribute" value="ex"></property>-->
-        <!--&lt;!&ndash;      定义需要特殊处理的异常，用类名或完全路径名作为key，异常页名作为值&ndash;&gt;-->
-        <!--&lt;!&ndash;<property name="exceptionMappings">&ndash;&gt;-->
-        <!--&lt;!&ndash;<props>&ndash;&gt;-->
-        <!--&lt;!&ndash;</props>&ndash;&gt;-->
-        <!--&lt;!&ndash;</property>&ndash;&gt;-->
-        <!--&lt;!&ndash;<property name="statusCodes">&ndash;&gt;-->
-        <!--&lt;!&ndash;<map>&ndash;&gt;-->
-        <!--&lt;!&ndash;<entry key="404" value="/error/404"/>&ndash;&gt;-->
-        <!--&lt;!&ndash;</map>&ndash;&gt;-->
-        <!--&lt;!&ndash;</property>&ndash;&gt;-->
+    <!--&lt;!&ndash;定义默认的异常处理页面，当该异常类型的注册时使用&ndash;&gt;-->
+    <!--<property name="defaultErrorView" value="error"></property>-->
+    <!--&lt;!&ndash;定义异常处理页面用来获取异常信息的变量名，默认名为exception &ndash;&gt;-->
+    <!--<property name="exceptionAttribute" value="ex"></property>-->
+    <!--&lt;!&ndash;      定义需要特殊处理的异常，用类名或完全路径名作为key，异常页名作为值&ndash;&gt;-->
+    <!--&lt;!&ndash;<property name="exceptionMappings">&ndash;&gt;-->
+    <!--&lt;!&ndash;<props>&ndash;&gt;-->
+    <!--&lt;!&ndash;</props>&ndash;&gt;-->
+    <!--&lt;!&ndash;</property>&ndash;&gt;-->
+    <!--&lt;!&ndash;<property name="statusCodes">&ndash;&gt;-->
+    <!--&lt;!&ndash;<map>&ndash;&gt;-->
+    <!--&lt;!&ndash;<entry key="404" value="/error/404"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;</map>&ndash;&gt;-->
+    <!--&lt;!&ndash;</property>&ndash;&gt;-->
     <!--</bean>-->
 </beans>

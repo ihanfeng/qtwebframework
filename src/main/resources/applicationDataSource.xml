@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+            <property name="url" value="${jdbc.url}"/>
+            <property name="driverClassName" value="${jdbc.drivername}"/>
+            <property name="password" value="${jdbc.password}"/>
+            <property name="username" value="${jdbc.username}"/>
+            <property name="filters" value="log4j,stat"/>
+        </bean>-->
+
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <!-- 用户名-->
+        <property name="user" value="${database.username}"/>
+        <!-- 用户密码-->
+        <property name="password" value="${database.password}"/>
+        <property name="driverClass" value="${database.drivername}"/>
+        <property name="jdbcUrl" value="${database.url}"/>
+    </bean>
+    <bean id="sessionFactory"
+          class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"
+          lazy-init="false">
+        <property name="packagesToScan" value="com.qtong.core.model"/>
+        <property name="dataSource" ref="dataSource"/>
+        <property name="hibernateProperties">
+
+            <map>
+                <entry key="hibernate.cache.provider_class" value="org.hibernate.cache.ehcache.EhCacheRegionFactory"/>
+                <entry key="hibernate.cache.region.factory_class"
+                       value="org.hibernate.cache.SingletonEhCacheRegionFactory"/>
+                <entry key="hibernate.cache.use_second_level_cache" value="true"/>
+                <entry key="hibernate.cache.use_query_cache" value="true"/>
+                <entry key="hibernate.show_sql" value="create"></entry>
+                <entry key="hibernate.hbm2ddl.auto" value="update"/>
+                <entry key="hibernate.format_sql" value="true"/>
+                <entry key="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
+                <!--<entry key="hibernate.current_session_context_class"-->
+                <!--value=" org.springframework.orm.hibernate4.SpringSessionContext"/>-->
+                <entry key="hibernate.enable_lazy_load_no_trans" value="true"></entry>
+                <entry key="hibernate.current_session_context_class"
+                       value="org.springframework.orm.hibernate4.SpringSessionContext"/>
+                <!--<entry key="hibernate.multiTenancy" value="DATABASE"/> -->
+                <!--<entry key="hibernate.tenant_identifier_resolver" value="com.qtong.healthcare.ahx.dao.TenantIdResolver"/> -->
+                <!--<entry key="hibernate.multi_tenant_connection_provider" value="com.qtong.healthcare.ahx.dao.SchemaBasedMultiTenantConnectionProvider"/> -->
+            </map>
+
+        </property>
+    </bean>
+    <bean id="hibernateTemplate" class="org.springframework.orm.hibernate4.HibernateTemplate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+</beans>
