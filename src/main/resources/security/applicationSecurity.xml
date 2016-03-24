@@ -4,7 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
-    <bean id="securityRealm" class="cn.zmlio.service.security.SecurityRealm">
+    <bean id="securityRealm" class="com.qtong.core.service.auth.SecurityRealm">
         <property name="credentialsMatcher" ref="credentialsMatcher"/>
         <property name="cacheManager" ref="shiroCacheManager"></property>
     </bean>
@@ -15,7 +15,7 @@
 
 
     <bean id="credentialsMatcher"
-          class="cn.zmlio.service.security.RetryLimitHashedCredentialsMatcher">
+          class="com.qtong.core.service.auth.RetryLimitHashedCredentialsMatcher">
         <constructor-arg index="0" ref="ehCacheManager"/>
         <property name="hashAlgorithmName" value="MD5"/>
         <property name="hashIterations" value="2"></property>
@@ -27,6 +27,7 @@
     <bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
         <constructor-arg value="sid"/>
         <property name="httpOnly" value="true"/>
+        <property name="secure" value="true"></property>
         <property name="maxAge" value="-1"/>
     </bean>
 
@@ -98,12 +99,11 @@
         <property name="filterChainDefinitions">
             <value>
                 #静态文件
-                /js/**=anon
-                /style/**=anon
-                /lib/**=anon
+                /static/**=anon
                 #登录url
                 /user/login**=anon,authc
                 /user/logout=logout
+                /=anon
                 /**=anon
             </value>
         </property>
@@ -115,7 +115,7 @@
     <!-- 基于Form表单的身份验证过滤器 -->
     <bean id="formAuthenticationFilter"
           class="org.apache.shiro.web.filter.authc.FormAuthenticationFilter">
-        <property name="usernameParam" value="princple"/>
+        <property name="usernameParam" value="username"/>
         <property name="passwordParam" value="password"/>
         <property name="rememberMeParam" value="rememberMe"/>
     </bean>

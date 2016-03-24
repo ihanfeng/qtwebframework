@@ -9,4 +9,6 @@ import com.qtong.core.model.User;
 public interface IUserDao extends IBaseDao {
 
     void createUser(User user);
+
+    User getUserByPrincipal(String principal);
 }
