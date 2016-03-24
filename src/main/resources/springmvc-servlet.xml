@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <!-- 对静态资源文件的访问 方案一 （二选一） -->
+    <mvc:default-servlet-handler/>
+    <mvc:annotation-driven/>
+    <!--允许使用注解的方式-->
+    <context:annotation-config/>
+    <context:component-scan base-package="com.qtong.core.web"/>
+    <!-- 视图解释类 -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+        <!--可为空,方便实现自已的依据扩展名来选择视图解释类的逻辑 -->
+        <property name="viewClass"
+                  value="org.springframework.web.servlet.view.JstlView"/>
+    </bean>
+
+
+    <!--<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">-->
+        <!--&lt;!&ndash;定义默认的异常处理页面，当该异常类型的注册时使用&ndash;&gt;-->
+        <!--<property name="defaultErrorView" value="error"></property>-->
+        <!--&lt;!&ndash;定义异常处理页面用来获取异常信息的变量名，默认名为exception &ndash;&gt;-->
+        <!--<property name="exceptionAttribute" value="ex"></property>-->
+        <!--&lt;!&ndash;      定义需要特殊处理的异常，用类名或完全路径名作为key，异常页名作为值&ndash;&gt;-->
+        <!--&lt;!&ndash;<property name="exceptionMappings">&ndash;&gt;-->
+        <!--&lt;!&ndash;<props>&ndash;&gt;-->
+        <!--&lt;!&ndash;</props>&ndash;&gt;-->
+        <!--&lt;!&ndash;</property>&ndash;&gt;-->
+        <!--&lt;!&ndash;<property name="statusCodes">&ndash;&gt;-->
+        <!--&lt;!&ndash;<map>&ndash;&gt;-->
+        <!--&lt;!&ndash;<entry key="404" value="/error/404"/>&ndash;&gt;-->
+        <!--&lt;!&ndash;</map>&ndash;&gt;-->
+        <!--&lt;!&ndash;</property>&ndash;&gt;-->
+    <!--</bean>-->
+</beans>

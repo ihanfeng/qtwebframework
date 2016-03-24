@@ -1,0 +1,64 @@
+/*清除所有样式，撑开页面 */
+html, body {
+    min-height: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+body {
+    background-color: #5cb85c;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.page-header {
+    margin-top: 0;
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-top: 50px;
+}
+
+.banner {
+    background: url("../img/banner-img-bg.jpg") transparent center;
+    height: 360px;
+}
+
+@keyframes login-box {
+    0% {
+        box-shadow: 0 0 15px gray;
+    }
+    50% {
+        box-shadow: 0 0 0;
+    }
+    100% {
+        box-shadow: 0 0 15px gray;
+    }
+}
+
+#loginbox {
+    border: 1px solid silver;
+    height: 360px;
+    background-color: #b9def0;
+    /*opacity: 0.5;*/
+    border-radius: 15px;
+    animation: login-box 2s  infinite linear;
+}
+
+#login-form {
+    background: white;
+    border: 1px solid silver;
+    border-radius: 5px;
+    margin: 20px 30px;
+    position: relative;
+}
+
+#login-form div {
+    margin: 20px;
+}
+
+.footer {
+    position: fixed;
+    width: 100%;
+    height:50px;
+    bottom: 0;
+}
