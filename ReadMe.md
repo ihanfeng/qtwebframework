@@ -84,6 +84,28 @@
 > 　　ehcache作为一个缓存框架，不仅能做数据库缓存，还能做应用缓存，shiro和springmvc都可以将计算结果放到缓存中，减轻服务器的io和计算压力
 
 
+### -Bootstrap-
+
+> 　　Bootstrap是一款开源的UI框架，特点是容易定制，容易书写还特别漂亮,而且是移动设备优先的，也就是说，你可以写一次代码，能在pc和移动设备上都显示的比较漂亮。
+
+##4. 项目运行
+
+1. 检出
+
+     git clone https://github.com/zmlgit/qtwebframework.git
+
+2. 创建数据库
+
+    １)推荐使用mysql. 在mysql中创建`qtframework`数据库，
+    ２)然后创建修改`src/main/resources/database.propreties`中的数据库连接语句
+
+3. 选择`src/main/resources/scheduler/tables_mysql.sql` 中的建表语句，为quartz定时任务建表
+
+4. 安装maven
+
+5. 运行`mvn package`命令
+
+6. 将`target/core.war` 复制到tomcat下运行
 
 
 
