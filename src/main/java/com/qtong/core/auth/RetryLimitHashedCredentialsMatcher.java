@@ -1,4 +1,4 @@
-package com.qtong.core.service.auth;
+package com.qtong.core.auth;
 
 import net.sf.ehcache.CacheManager;
 import net.sf.ehcache.Element;

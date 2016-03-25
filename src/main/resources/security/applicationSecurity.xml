@@ -4,7 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
-    <bean id="securityRealm" class="com.qtong.core.service.auth.SecurityRealm">
+    <bean id="securityRealm" class="com.qtong.core.auth.SecurityRealm">
         <property name="credentialsMatcher" ref="credentialsMatcher"/>
         <property name="cacheManager" ref="shiroCacheManager"></property>
     </bean>
@@ -13,9 +13,8 @@
         <property name="cacheManager" ref="ehCacheManager"/>
     </bean>
 
-
     <bean id="credentialsMatcher"
-          class="com.qtong.core.service.auth.RetryLimitHashedCredentialsMatcher">
+          class="com.qtong.core.auth.RetryLimitHashedCredentialsMatcher">
         <constructor-arg index="0" ref="ehCacheManager"/>
         <property name="hashAlgorithmName" value="MD5"/>
         <property name="hashIterations" value="2"></property>

@@ -1,4 +1,4 @@
-package com.qtong.core.service.auth;
+package com.qtong.core.auth;
 
 import com.qtong.core.model.User;
 import com.qtong.core.service.BaseService;
