@@ -12,11 +12,11 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "t_user")
+@Cacheable(true)
 public class User {
 
     //用户ID，不是用int型而使用uuid是为了防止被人遍历
     private String userId;
-
     //用户名称
     private String username;
     //用户email，在此处的email和contacts里面的email没有直接关系，属于登录选项的一部分
@@ -46,6 +46,7 @@ public class User {
     @JsonIgnore
     private Set<Role> roles;
 
+    @Column(name = "username", nullable = false, unique = true)
     public String getUsername() {
         return username;
     }
@@ -55,8 +56,8 @@ public class User {
     }
 
     @Id
-    @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid")
+    @GeneratedValue(generator = "uuid")
     @Column(name = "user_id")
     public String getUserId() {
         return userId;
@@ -124,8 +125,8 @@ public class User {
         this.salt = salt;
     }
 
-    @OneToMany(targetEntity = Role.class)
-    @JoinTable(name = "t_user_role", joinColumns = @JoinColumn(name = "roleId"), inverseJoinColumns = @JoinColumn(name = "userId"))
+    @ManyToMany(targetEntity = Role.class)
+    @JoinTable(name = "t_user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     public Set<Role> getRoles() {
         return roles;
     }

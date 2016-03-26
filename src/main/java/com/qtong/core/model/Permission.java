@@ -18,8 +18,8 @@ public class Permission {
     private String expression;
 
     @Id
-    @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid")
+    @GeneratedValue(generator = "uuid")
     @Column(name = "perm_id")
     public String getPermId() {
         return permId;
@@ -37,6 +37,7 @@ public class Permission {
         this.expression = expression;
     }
 
+    @Column(name = "perm_name", nullable = false, unique = true)
     public String getName() {
         return name;
     }

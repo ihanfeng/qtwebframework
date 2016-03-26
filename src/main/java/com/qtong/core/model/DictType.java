@@ -21,8 +21,8 @@ public class DictType {
 
 
     @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid")
+    @GenericGenerator(name="systemUUID",strategy="uuid")
+    @GeneratedValue(generator="systemUUID")
     @Column(name = "type_id")
     public String getTypeId() {
         return typeId;

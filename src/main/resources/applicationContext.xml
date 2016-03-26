@@ -33,9 +33,9 @@
         <!--  <aop:advisor advice-ref="druid-stat-interceptor" pointcut-ref="methodExecution"/>-->
     </aop:config>
 
-<!--    <bean id="druid-stat-interceptor"
-          class="com.alibaba.druid.support.spring.stat.DruidStatInterceptor">
-    </bean>-->
+    <!--    <bean id="druid-stat-interceptor"
+              class="com.alibaba.druid.support.spring.stat.DruidStatInterceptor">
+        </bean>-->
     <tx:advice transaction-manager="transactionManager" id="txAdvice">
         <tx:attributes>
             <tx:method name="do*" propagation="REQUIRED" read-only="false"
@@ -62,10 +62,11 @@
     </tx:advice>
     <tx:annotation-driven transaction-manager="transactionManager"/>
     <!--定时任务-->
-    <import resource="spring-quartz.xml"/>
+    <!--<import resource="spring-quartz.xml"/>-->
 
     <!--缓存功能,将此功能单独拿出去做配置，是考虑到将来可能采用其他缓存方式-->
     <import resource="applicationCache.xml"/>
     <!--数据库配置，此项也是经常变动的项目，故而将其拿出去单独配置-->
     <import resource="applicationDataSource.xml"/>
+    <import resource="security/applicationSecurity.xml"></import>
 </beans>

@@ -24,8 +24,8 @@ public class UserInfo {
     private User user;
 
     @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid")
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(name = "info_id")
     public String getDetailId() {
         return infoId;

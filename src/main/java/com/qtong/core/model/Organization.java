@@ -25,8 +25,8 @@ public class Organization {
     private Set<User> users;
 
     @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid")
+    @GenericGenerator(name="systemUUID",strategy="uuid")
+    @GeneratedValue(generator="systemUUID")
     @Column(name = "org_id")
     public String getOrgId() {
         return orgId;

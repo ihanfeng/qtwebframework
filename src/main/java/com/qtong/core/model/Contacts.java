@@ -37,8 +37,8 @@ public class Contacts {
     private String personSite;
 
     @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid")
+    @GenericGenerator(name="systemUUID",strategy="uuid")
+    @GeneratedValue(generator="systemUUID")
     @Column(name = "contact_id")
     public String getContactId() {
         return contactId;

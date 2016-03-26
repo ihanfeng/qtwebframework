@@ -11,7 +11,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "t_role")
-@Cacheable(value = true)
+//@Cacheable(value = true)
 public class Role {
     //记录ID
     private String roleId;
@@ -22,8 +22,8 @@ public class Role {
     private List<Permission> permissions;
 
     @Id
-    @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid")
+    @GeneratedValue(generator = "uuid")
     @Column(name = "role_id")
     public String getRoleId() {
         return roleId;
@@ -33,6 +33,7 @@ public class Role {
         this.roleId = roleId;
     }
 
+    @Column(name = "role_name", unique = true, nullable = false)
     public String getRoleName() {
         return roleName;
     }
@@ -42,7 +43,7 @@ public class Role {
     }
 
     @ManyToMany(targetEntity = Permission.class, cascade = CascadeType.ALL)
-    @JoinTable(name = "t_role_perm", joinColumns = @JoinColumn(name = "perm_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @JoinTable(name = "t_role_perm", joinColumns = @JoinColumn(name = "role_id"), inverseJoinColumns = @JoinColumn(name = "perm_id"))
     public List<Permission> getPermissions() {
         return permissions;
     }

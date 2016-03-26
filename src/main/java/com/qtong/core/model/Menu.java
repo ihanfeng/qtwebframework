@@ -30,8 +30,8 @@ public class Menu {
     private String style;
 
     @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid")
+    @GenericGenerator(name = "systemUUID", strategy = "uuid")
+    @GeneratedValue(generator = "systemUUID")
     @Column(name = "menu_id")
     public String getMenuId() {
         return menuId;

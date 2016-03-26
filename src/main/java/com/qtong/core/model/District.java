@@ -23,8 +23,8 @@ public class District {
     public String areaCode;//电话区号
 
     @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid")
+    @GenericGenerator(name="systemUUID",strategy="uuid")
+    @GeneratedValue(generator="systemUUID")
     @Column(name = "dist_id")
     public String getDistId() {
         return distId;

@@ -22,8 +22,8 @@ public class Dictionary {
     private DictType type;
 
     @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid")
+    @GenericGenerator(name="systemUUID",strategy="uuid")
+    @GeneratedValue(generator="systemUUID")
     @Column(name = "dict_id")
     public String getDictId() {
         return dictId;

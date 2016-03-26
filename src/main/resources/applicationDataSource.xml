@@ -31,7 +31,7 @@
                        value="org.hibernate.cache.SingletonEhCacheRegionFactory"/>
                 <entry key="hibernate.cache.use_second_level_cache" value="true"/>
                 <entry key="hibernate.cache.use_query_cache" value="true"/>
-                <entry key="hibernate.show_sql" value="create"></entry>
+                <entry key="hibernate.show_sql" value="true"></entry>
                 <entry key="hibernate.hbm2ddl.auto" value="update"/>
                 <entry key="hibernate.format_sql" value="true"/>
                 <entry key="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>

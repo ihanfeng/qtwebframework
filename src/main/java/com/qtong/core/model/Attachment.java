@@ -31,8 +31,8 @@ public class Attachment {
     private String fileName;//文件名称
 
     @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid")
+    @GenericGenerator(name="systemUUID",strategy="uuid")
+    @GeneratedValue(generator="systemUUID")
     @Column(name = "attch_id")
     public String getAttchId() {
         return attchId;

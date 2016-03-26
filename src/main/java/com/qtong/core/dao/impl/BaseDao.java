@@ -45,9 +45,8 @@ public class BaseDao implements IBaseDao {
         return hibernateTemplate.getSessionFactory().getCurrentSession();
     }
 
-    @Resource
     public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
+        this.sessionFactory = hibernateTemplate.getSessionFactory();
     }
 
 /*

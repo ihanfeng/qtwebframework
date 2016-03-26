@@ -29,7 +29,7 @@
             <div id="loginbox"
                  class="col-lg-4 col-lg-offset-8 col-md-5 col-md-offset-6 col-sm-6 col-sm-offset-6 col-xs-6 col-xs-offset-5">
                 <div class="text-center" style="margin-top: 60px;"><h2>登录</h2></div>
-                <form action="hello/welcome" class="form-horizontal" id="login-form" method="post">
+                <form action="auth/login" class="form-horizontal" id="login-form" method="post">
                     <div class="form-group">
                         <span class="input-group">
                             <span class="input-group-addon">
