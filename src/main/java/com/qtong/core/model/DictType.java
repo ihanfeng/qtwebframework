@@ -3,9 +3,10 @@ package com.qtong.core.model;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.Set;
 
 /**
- *  字典类型
+ * 字典类型
  */
 @Entity
 @Table(name = "t_dictType")
@@ -19,10 +20,11 @@ public class DictType {
     //描述
     private String description;
 
+    private Set<Dictionary> dictionaries;
 
     @Id
-    @GenericGenerator(name="systemUUID",strategy="uuid")
-    @GeneratedValue(generator="systemUUID")
+    @GenericGenerator(name = "systemUUID", strategy = "uuid")
+    @GeneratedValue(generator = "systemUUID")
     @Column(name = "type_id")
     public String getTypeId() {
         return typeId;
@@ -57,5 +59,16 @@ public class DictType {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+
+    @OneToMany(targetEntity = Dictionary.class)
+    @JoinColumn(name = "type_id")
+    public Set<Dictionary> getDictionaries() {
+        return dictionaries;
+    }
+
+    public void setDictionaries(Set<Dictionary> dictionaries) {
+        this.dictionaries = dictionaries;
     }
 }

@@ -12,13 +12,13 @@ import java.util.Set;
 @Entity
 @Table(name = "t_userinfo")
 public class UserInfo {
-
+    //记录ID
     private String infoId;
-
+    //昵称
     private String nickName;
-
+    //头像
     private Attachment avartar;
-
+    //联系方式
     private Set<Contacts> contacts;
 
     private User user;
@@ -44,7 +44,7 @@ public class UserInfo {
     }
 
     @OneToOne(targetEntity = Attachment.class)
-    @JoinColumn(name = "avartarId")
+    @JoinColumn(name = "avartar_Id")
     public Attachment getAvartar() {
         return avartar;
     }
@@ -64,7 +64,7 @@ public class UserInfo {
     }
 
     @OneToOne(targetEntity = User.class)
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "user_id")
     public User getUser() {
         return user;
     }

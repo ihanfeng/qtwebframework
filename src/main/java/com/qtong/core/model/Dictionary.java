@@ -18,12 +18,12 @@ public class Dictionary {
     private String expression;
     //表述
     private String description;
-    //字典类型
-    private DictType type;
+    /*//字典类型
+    private DictType type;*/
 
     @Id
-    @GenericGenerator(name="systemUUID",strategy="uuid")
-    @GeneratedValue(generator="systemUUID")
+    @GenericGenerator(name = "systemUUID", strategy = "uuid")
+    @GeneratedValue(generator = "systemUUID")
     @Column(name = "dict_id")
     public String getDictId() {
         return dictId;
@@ -49,13 +49,13 @@ public class Dictionary {
         this.description = description;
     }
 
-    @ManyToOne(targetEntity = DictType.class)
+    /*@ManyToOne(targetEntity = DictType.class)
     @JoinColumn(name = "type")
     public DictType getType() {
         return type;
-    }
+    }*/
 
-    public void setType(DictType type) {
+    /*public void setType(DictType type) {
         this.type = type;
-    }
+    }*/
 }

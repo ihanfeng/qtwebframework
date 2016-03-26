@@ -98,6 +98,8 @@
         </property>
         <property name="filterChainDefinitions">
             <value>
+                #根目录
+                /=anon
                 #静态文件
                 /static/**=anon
                 /api/logout=logout

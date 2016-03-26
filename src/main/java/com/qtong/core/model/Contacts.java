@@ -26,19 +26,19 @@ public class Contacts {
     //手机号
     private String mobileNumber;
     //邮政编码
-    private String postCode;
+    private String postcode;
     //QQ号码
     private String qq;
     //邮箱
     private String email;
     //微博帐号
     private String microblog;
-    //个人网址
-    private String personSite;
+    //个人主页
+    private String homepage;
 
     @Id
-    @GenericGenerator(name="systemUUID",strategy="uuid")
-    @GeneratedValue(generator="systemUUID")
+    @GenericGenerator(name = "systemUUID", strategy = "uuid")
+    @GeneratedValue(generator = "systemUUID")
     @Column(name = "contact_id")
     public String getContactId() {
         return contactId;
@@ -89,13 +89,13 @@ public class Contacts {
     public void setMobileNumber(String mobileNumber) {
         this.mobileNumber = mobileNumber;
     }
-    
-    public String getPostCode() {
-        return postCode;
+
+    public String getPostcode() {
+        return postcode;
     }
 
-    public void setPostCode(String postCode) {
-        this.postCode = postCode;
+    public void setPostcode(String postcode) {
+        this.postcode = postcode;
     }
 
     public String getQq() {
@@ -122,12 +122,12 @@ public class Contacts {
         this.microblog = microblog;
     }
 
-    public String getPersonSite() {
-        return personSite;
+    public String getHomepage() {
+        return homepage;
     }
 
-    public void setPersonSite(String personSite) {
-        this.personSite = personSite;
+    public void setHomepage(String homepage) {
+        this.homepage = homepage;
     }
 
     public boolean isDefaults() {

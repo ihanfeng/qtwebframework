@@ -1,7 +1,7 @@
 package com.qtong.core.service.impl;
 
 import com.google.common.base.Preconditions;
-import com.qtong.core.dao.IUserDao;
+import com.qtong.core.dao.IBasicDao;
 import com.qtong.core.model.Permission;
 import com.qtong.core.model.Role;
 import com.qtong.core.model.User;
@@ -20,10 +20,10 @@ import java.util.Set;
 @Service
 public class BaseServiceImpl implements BaseService {
 
-    private IUserDao userDao;
+    private IBasicDao userDao;
 
     @Resource
-    public void setUserDao(IUserDao userDao) {
+    public void setUserDao(IBasicDao userDao) {
         this.userDao = userDao;
     }
 

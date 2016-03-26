@@ -1,7 +1,7 @@
 package com.qtong.core.dao.impl;
 
 
-import com.qtong.core.dao.IUserDao;
+import com.qtong.core.dao.IBasicDao;
 import com.qtong.core.model.Permission;
 import com.qtong.core.model.Role;
 import com.qtong.core.model.User;
@@ -14,11 +14,7 @@ import java.util.List;
  * Created by ZML on 2016/1/15.
  */
 @Repository
-public class UserDaoImpl extends BaseDao implements IUserDao {
-
-    public void createUser(User user) {
-        super.save(user);
-    }
+public class BasicDaoImpl extends BaseDao implements IBasicDao {
 
     @Override
     public User getUserByPrincipal(String principal) {
@@ -29,8 +25,6 @@ public class UserDaoImpl extends BaseDao implements IUserDao {
                         .add(Restrictions.eq("email", principal)))
                 .uniqueResult();
         return user;
-
-
     }
 
     @Override

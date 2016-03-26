@@ -1,5 +1,6 @@
 package com.qtong.core.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -20,7 +21,7 @@ public class Attachment {
     @JsonIgnore
     private URI serverPath;//文件储存路径
 
-    private long length;//文件大小
+    private long fileLength;//文件大小
 
     private String extension;//拓展名
 
@@ -31,8 +32,8 @@ public class Attachment {
     private String fileName;//文件名称
 
     @Id
-    @GenericGenerator(name="systemUUID",strategy="uuid")
-    @GeneratedValue(generator="systemUUID")
+    @GenericGenerator(name = "systemUUID", strategy = "uuid")
+    @GeneratedValue(generator = "systemUUID")
     @Column(name = "attch_id")
     public String getAttchId() {
         return attchId;
@@ -42,6 +43,7 @@ public class Attachment {
         this.attchId = attchId;
     }
 
+    @Column(name = "server_path")
     public URI getServerPath() {
         return serverPath;
     }
@@ -50,12 +52,13 @@ public class Attachment {
         this.serverPath = serverPath;
     }
 
-    public long getLength() {
-        return length;
+    @Column(name = "file_length")
+    public long getFileLength() {
+        return fileLength;
     }
 
-    public void setLength(long length) {
-        this.length = length;
+    public void setFileLength(long fileLength) {
+        this.fileLength = fileLength;
     }
 
     public String getExtension() {
@@ -66,6 +69,7 @@ public class Attachment {
         this.extension = extension;
     }
 
+    @Column(name = "create_time")
     public Date getCreateTime() {
         return createTime;
     }
@@ -74,6 +78,7 @@ public class Attachment {
         this.createTime = createTime;
     }
 
+    @Column(name = "group_flag")
     public String getGroupflag() {
         return groupflag;
     }
@@ -82,6 +87,7 @@ public class Attachment {
         this.groupflag = groupflag;
     }
 
+    @Column(name = "file_name")
     public String getFileName() {
         return fileName;
     }

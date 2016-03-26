@@ -10,9 +10,7 @@ import java.util.List;
 /**
  * Created by ZML on 2016/1/15.
  */
-public interface IUserDao extends IBaseDao {
-
-    void createUser(User user);
+public interface IBasicDao extends IBaseDao {
 
     User getUserByPrincipal(String principal);
 
