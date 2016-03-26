@@ -1,7 +1,7 @@
 package com.qtong.core.utils;
 
 /**
- * Created by ZML on 2016/3/22.
+ * 常量类
  */
 public class Constants {
 }

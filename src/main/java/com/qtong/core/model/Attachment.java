@@ -8,7 +8,7 @@ import java.net.URI;
 import java.util.Date;
 
 /**
- * Created by ZML on 2015/8/7.
+ * 附件类
  */
 
 @Entity
@@ -20,15 +20,15 @@ public class Attachment {
     @JsonIgnore
     private URI serverPath;//文件储存路径
 
-    private long length;
+    private long length;//文件大小
 
-    private String extension;
+    private String extension;//拓展名
 
-    private Date createTime;
+    private Date createTime;//创建时间
 
-    private String groupflag;
+    private String groupflag;//附件分组信息
 
-    private String fileName;
+    private String fileName;//文件名称
 
     @Id
     @GeneratedValue(generator = "uuid")

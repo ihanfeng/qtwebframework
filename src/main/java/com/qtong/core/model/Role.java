@@ -7,19 +7,19 @@ import javax.persistence.*;
 import java.util.List;
 
 /**
- * Created by ZML on 2015/8/6.
+ * 角色表
  */
 @Entity
 @Table(name = "t_role")
 @Cacheable(value = true)
 public class Role {
-
+    //记录ID
     private String roleId;
-
+    //角色名称
     private String roleName;
-
+    //该角色拥有的权限
     @JsonIgnore
-    private List<Access> accesses;
+    private List<Permission> permissions;
 
     @Id
     @GeneratedValue(generator = "uuid")
@@ -41,13 +41,13 @@ public class Role {
         this.roleName = roleName;
     }
 
-    @ManyToMany(targetEntity = Access.class)
-    @JoinTable(name = "t_role_access", joinColumns = @JoinColumn(name = "access_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    public List<Access> getAccesses() {
-        return accesses;
+    @ManyToMany(targetEntity = Permission.class, cascade = CascadeType.ALL)
+    @JoinTable(name = "t_role_perm", joinColumns = @JoinColumn(name = "perm_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    public List<Permission> getPermissions() {
+        return permissions;
     }
 
-    public void setAccesses(List<Access> accesses) {
-        this.accesses = accesses;
+    public void setPermissions(List<Permission> permissions) {
+        this.permissions = permissions;
     }
 }

@@ -5,13 +5,13 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 
 /**
- * Created by ZML on 2015/8/6.
+ * 权限表
  */
 @Entity
-@Table(name = "t_access")
-public class Access {
+@Table(name = "t_permission")
+public class Permission {
 
-    public String accessId;
+    public String permId;
 
     private String name;
 
@@ -20,13 +20,13 @@ public class Access {
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid")
-    @Column(name = "access_id")
-    public String getAccessId() {
-        return accessId;
+    @Column(name = "perm_id")
+    public String getPermId() {
+        return permId;
     }
 
-    public void setAccessId(String accessId) {
-        this.accessId = accessId;
+    public void setPermId(String permId) {
+        this.permId = permId;
     }
 
     public String getExpression() {

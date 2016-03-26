@@ -5,7 +5,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 
 /**
- * Created by ZML on 2015/8/7.
+ * 地区表
  */
 
 @Entity

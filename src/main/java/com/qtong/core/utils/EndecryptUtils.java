@@ -12,8 +12,9 @@ import org.apache.shiro.crypto.hash.Md5Hash;
 import java.security.Key;
 
 /**
- * Created by ZML on 2015/9/23.
+ * 加密工具类
  */
+@SuppressWarnings("all")
 public class EndecryptUtils {
     /**
      * base64进制加密

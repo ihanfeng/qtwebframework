@@ -8,31 +8,41 @@ import java.util.Date;
 import java.util.Set;
 
 /**
- * Created by ZML on 2015/8/6.
+ * 用户账户表
  */
 @Entity
 @Table(name = "t_user")
 public class User {
 
-    // private String userId;//用户ID，不是用int型而使用uuid是为了防止被人遍历
-
+    //用户ID，不是用int型而使用uuid是为了防止被人遍历
     private String userId;
 
+    //用户名称
     private String username;
-
+    //用户email，在此处的email和contacts里面的email没有直接关系，属于登录选项的一部分
     private String email;
-
+    //用户的手机号，同上
     private String phone;
-
+    //该用户是否是活跃用户
     private boolean actived = true;
+    //该用户是否允许登录
     private boolean enable = true;
+    //该用户是否过期
     private boolean expired = false;
+    //该账户创建时间
     private Date createTime = new Date();
+    //该账户最后被修改时间
     private Date lastModified = new Date();
+
+    //密码，在向前台写这个对象的时候，隐藏掉密码
     @JsonIgnore
     private String password;
+
+    //加密用的盐值，在向前台写这个对象的时候，隐藏掉
     @JsonIgnore
     private String salt;
+
+    //用户的角色集合
     @JsonIgnore
     private Set<Role> roles;
 
@@ -43,18 +53,6 @@ public class User {
     public void setUsername(String username) {
         this.username = username;
     }
-
-
-//    @Id
-//    @GeneratedValue(generator = "uuid")
-//    @GenericGenerator(name = "uuid", strategy = "uuid")
-//    public String getUserId() {
-//        return userId;
-//    }
-//
-//    public void setUserId(String userId) {
-//        this.userId = userId;
-//    }
 
     @Id
     @GeneratedValue(generator = "uuid")
