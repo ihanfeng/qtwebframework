@@ -1,7 +1,10 @@
 package com.qtong.core.service;
 
+import com.qtong.core.model.Permission;
+import com.qtong.core.model.Role;
 import com.qtong.core.model.User;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -18,4 +21,8 @@ public interface BaseService {
     Set<String> getUserPermissions(String username);
 
     User queryUniqueUser(String username);
+
+    List<Permission> listAllPermissions();
+
+    Role getRoleByRoleName(String roleName);
 }

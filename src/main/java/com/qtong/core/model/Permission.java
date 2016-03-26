@@ -5,28 +5,28 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 
 /**
- * Created by ZML on 2015/8/6.
+ * 权限表
  */
 @Entity
-@Table(name = "t_access")
-public class Access {
+@Table(name = "t_permission")
+public class Permission {
 
-    public String accessId;
+    public String permId;
 
     private String name;
 
     private String expression;
 
     @Id
-    @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid")
-    @Column(name = "access_id")
-    public String getAccessId() {
-        return accessId;
+    @GeneratedValue(generator = "uuid")
+    @Column(name = "perm_id")
+    public String getPermId() {
+        return permId;
     }
 
-    public void setAccessId(String accessId) {
-        this.accessId = accessId;
+    public void setPermId(String permId) {
+        this.permId = permId;
     }
 
     public String getExpression() {
@@ -37,6 +37,7 @@ public class Access {
         this.expression = expression;
     }
 
+    @Column(name = "perm_name", nullable = false, unique = true)
     public String getName() {
         return name;
     }

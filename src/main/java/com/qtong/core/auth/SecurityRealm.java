@@ -16,6 +16,7 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 
+import javax.annotation.Resource;
 
 
 /**
@@ -25,6 +26,7 @@ public class SecurityRealm extends AuthorizingRealm {
 
 	private BaseService baseService;
 
+	@Resource
 	public void setBaseService(BaseService baseService) {
 		this.baseService = baseService;
 	}
@@ -63,7 +65,7 @@ public class SecurityRealm extends AuthorizingRealm {
 		if (user == null) {
 			throw new UnknownAccountException("该账户不存在");
 		}
-		if (user.isEnable()) {
+		if (!user.isEnable()) {
 			throw new LockedAccountException("该账户禁止登录");
 		}
 

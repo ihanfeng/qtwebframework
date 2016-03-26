@@ -5,25 +5,24 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 
 /**
- * Created by ZML on 2015/8/7.
- * 字典类型
+ *  字典类型
  */
 @Entity
 @Table(name = "t_dictType")
 public class DictType {
-
+    //记录ID
     private String typeId;
-
+    //上级类型
     private DictType parentType;
-
+    //类型名称
     private String typeName;
-
+    //描述
     private String description;
 
 
     @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid")
+    @GenericGenerator(name="systemUUID",strategy="uuid")
+    @GeneratedValue(generator="systemUUID")
     @Column(name = "type_id")
     public String getTypeId() {
         return typeId;

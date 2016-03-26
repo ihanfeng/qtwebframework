@@ -2,9 +2,13 @@ package com.qtong.core.dao.impl;
 
 
 import com.qtong.core.dao.IUserDao;
+import com.qtong.core.model.Permission;
+import com.qtong.core.model.Role;
 import com.qtong.core.model.User;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * Created by ZML on 2016/1/15.
@@ -27,5 +31,15 @@ public class UserDaoImpl extends BaseDao implements IUserDao {
         return user;
 
 
+    }
+
+    @Override
+    public List<Permission> listAllPermissions() {
+        return getSession().createCriteria(Permission.class).list();
+    }
+
+    @Override
+    public Role getRoleByRoleName(String roleName) {
+        return (Role) getSession().createCriteria(Role.class).add(Restrictions.eq("roleName", roleName)).uniqueResult();
     }
 }

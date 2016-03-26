@@ -5,30 +5,29 @@ import org.springframework.util.Assert;
 import java.util.List;
 
 /**
- * Created by ZML on 2015/8/5.
+ * 工具类，用于在数据库分页查询的时候进行参数传递
  */
 public class Pager<T> {
-
+    //总条数
     private long totalCount;
-
+    //当前页开始记录
     private int startIndex;
-
+    //当前页码
     private int currentPage;
-
+    //每页大小
     private int pageSize;
-
+    //数据记录
     private List<T> list;
-
 
     public Pager(int startIndex, long totalCount, int pageSize, List<?> list) {
 
         Assert.isTrue(pageSize >= 1, "PageSize should bigger than 0");
 
-        this.startIndex=startIndex;
+        this.startIndex = startIndex;
 
-        this.currentPage=startIndex/pageSize+1;
+        this.currentPage = startIndex / pageSize + 1;
 
-        this.pageSize=pageSize;
+        this.pageSize = pageSize;
 
     }
 
@@ -39,7 +38,7 @@ public class Pager<T> {
     public static int getStartOfPage(int pageNo, int pageSize) {
 
 
-        return (pageNo-1)*pageSize+1;
+        return (pageNo - 1) * pageSize + 1;
     }
 
     public long getTotalCount() {

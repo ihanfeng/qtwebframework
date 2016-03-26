@@ -5,39 +5,40 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 
 /**
- * Created by ZML on 2015/8/7.
+ * 联系人表
+ * 存放用户的联系方式
  */
 @Entity
 @Table(name = "t_contacts")
 public class Contacts {
-
+    //id
     private String contactId;
-
+    //是否是默认的
+    private boolean defaults;
+    //联系人说在的地区
     private District area;
-
+    //街道名称
     private String street;
-
+    //具体地址
     private String address;
-
+    //公司名称
     private String company;
-
+    //手机号
     private String mobileNumber;
-
-    private String phone;
-
+    //邮政编码
     private String postCode;
-
+    //QQ号码
     private String qq;
-
+    //邮箱
     private String email;
-
+    //微博帐号
     private String microblog;
-
+    //个人网址
     private String personSite;
 
     @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid")
+    @GenericGenerator(name="systemUUID",strategy="uuid")
+    @GeneratedValue(generator="systemUUID")
     @Column(name = "contact_id")
     public String getContactId() {
         return contactId;
@@ -88,15 +89,7 @@ public class Contacts {
     public void setMobileNumber(String mobileNumber) {
         this.mobileNumber = mobileNumber;
     }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
+    
     public String getPostCode() {
         return postCode;
     }
@@ -136,4 +129,13 @@ public class Contacts {
     public void setPersonSite(String personSite) {
         this.personSite = personSite;
     }
+
+    public boolean isDefaults() {
+        return defaults;
+    }
+
+    public void setDefaults(boolean defaults) {
+        this.defaults = defaults;
+    }
+
 }

@@ -6,15 +6,23 @@ import com.qtong.core.model.User;
 import org.apache.shiro.codec.Base64;
 import org.apache.shiro.codec.Hex;
 import org.apache.shiro.crypto.AesCipherService;
+import org.apache.shiro.crypto.RandomNumberGenerator;
 import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.crypto.hash.Md5Hash;
+import org.apache.shiro.crypto.hash.SimpleHash;
+import org.apache.shiro.util.ByteSource;
 
 import java.security.Key;
 
 /**
- * Created by ZML on 2015/9/23.
+ * Created by ZML on 2015/4/22.
+ * 备注： shiro进行加密解密的工具类封装
  */
 public class EndecryptUtils {
+    private static RandomNumberGenerator randomNumberGenerator = new SecureRandomNumberGenerator();
+    private static String algorithmName = "md5";
+    private static int hashIterations = 2;
+
     /**
      * base64进制加密
      *
@@ -70,45 +78,42 @@ public class EndecryptUtils {
     /**
      * 对密码进行md5加密,并返回密文和salt，包含在User对象中
      *
-     * @param username 用户名
-     * @param password 密码
      * @return 密文和salt
      */
-    public static User md5Password(String username, String password) {
-        Preconditions.checkArgument(!Strings.isNullOrEmpty(username), "username不能为空");
-        Preconditions.checkArgument(!Strings.isNullOrEmpty(password), "password不能为空");
+    public static User md5Password(User user) {
+        Preconditions.checkArgument(!Strings.isNullOrEmpty(user.getUsername()), "username不能为空");
+        Preconditions.checkArgument(!Strings.isNullOrEmpty(user.getPassword()), "password不能为空");
         SecureRandomNumberGenerator secureRandomNumberGenerator = new SecureRandomNumberGenerator();
         String salt = secureRandomNumberGenerator.nextBytes().toHex();
         //组合username,两次迭代，对密码进行加密
-        String password_cipherText = new Md5Hash(password, username + salt, 2).toBase64();
-        User user = new User();
+        String password_cipherText = new Md5Hash(user.getPassword(), user.getUsername() + salt, 2).toBase64();
         user.setPassword(password_cipherText);
         user.setSalt(salt);
-        user.setUsername(username);
         return user;
     }
 
-    public static boolean checkLoginUser(User loginUser, User dbUser) {
+    public static void encryptPassword(User user) {
 
-        Preconditions.checkArgument(loginUser != null, "登录用户不能为空");
+        user.setSalt(randomNumberGenerator.nextBytes().toHex());
 
-        if (dbUser == null) {
-            return false;
-        }
-        /*登录名为空，登录密码为空，两个用户名不一致*/
-        if (loginUser.getUsername() == null || loginUser.getPassword() == null || !loginUser.getUsername().equals(dbUser.getUsername())) {
-            return false;
-        }
-        /*开发测试的时候方便起见，允许测试帐号密码为空*/
-        if (dbUser.getPassword() == null || dbUser.getPassword().equals("")) {
-            return true;
-        }
-        if (new Md5Hash(loginUser.getPassword(), loginUser.getUsername() + loginUser.getSalt(), 2).toBase64().equals(dbUser.getPassword())) {
-            return true;
-        }
-
-        return false;
+        String newPassword = new SimpleHash(
+                algorithmName,
+                user.getPassword(),
+                ByteSource.Util.bytes(user.getSalt()),
+                hashIterations).toHex();
+        user.setPassword(newPassword);
     }
 
-    ;
+    public void setRandomNumberGenerator(RandomNumberGenerator randomNumberGenerator) {
+        EndecryptUtils.randomNumberGenerator = randomNumberGenerator;
+    }
+
+    public void setAlgorithmName(String algorithmName) {
+        EndecryptUtils.algorithmName = algorithmName;
+    }
+
+    public void setHashIterations(int hashIterations) {
+        EndecryptUtils.hashIterations = hashIterations;
+    }
 }
+

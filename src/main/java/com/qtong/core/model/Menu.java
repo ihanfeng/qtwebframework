@@ -5,28 +5,33 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 
 /**
- * Created by ZML on 2015/9/17.
+ * 用户菜单表
  */
 @Entity
 @Table(name = "t_menu")
 public class Menu {
-
+    //记录ID
     private String menuId;
-
+    //菜单名称
     private String menuName;
-
+    //菜单类型，如连接地址，下拉框等
     private String type;
-
+    //连接地址和执行的js方法
     private String href;
-
+    //是否只最下级菜单
     private boolean isLeaf;
-
+    //菜单级别
     private int level;
+    //上级菜单
     private Menu parent;
+    //CSS 样式名称
+    private String className;
+    //CSS 样式
+    private String style;
 
     @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid")
+    @GenericGenerator(name = "systemUUID", strategy = "uuid")
+    @GeneratedValue(generator = "systemUUID")
     @Column(name = "menu_id")
     public String getMenuId() {
         return menuId;

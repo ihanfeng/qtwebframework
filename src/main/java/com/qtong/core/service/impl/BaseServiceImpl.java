@@ -1,6 +1,8 @@
 package com.qtong.core.service.impl;
 
+import com.google.common.base.Preconditions;
 import com.qtong.core.dao.IUserDao;
+import com.qtong.core.model.Permission;
 import com.qtong.core.model.Role;
 import com.qtong.core.model.User;
 import com.qtong.core.service.BaseService;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -27,15 +30,18 @@ public class BaseServiceImpl implements BaseService {
     @Override
     public void createUser(User user) {
 
-        User encryptedUser = EndecryptUtils.md5Password(user.getUsername(), user.getPassword());
-        user.setPassword(encryptedUser.getPassword());
-        user.setSalt(encryptedUser.getSalt());
-        userDao.createUser(user);
+        Preconditions.checkNotNull(user);//判读用户是否为空，如果为空则抛出异常
+        user.setActived(true);//激活当前用户
+        user.setEnable(true);//当前用户能登录
+        user.setExpired(false);//设置其未过期
+        //user.setLocked(false);//设置其状态为未锁定
+        EndecryptUtils.encryptPassword(user);//为此用户设置密码加密
+        userDao.save(user);
     }
 
     @Override
     public void create(Object object) {
-
+        userDao.save(object);
     }
 
     @Override
@@ -43,10 +49,10 @@ public class BaseServiceImpl implements BaseService {
 
         User user = this.queryUniqueUser(username);
 
-        if(user ==null){
+        if (user == null) {
             return null;
         }
-        Set<String> roleNames=new HashSet<>();
+        Set<String> roleNames = new HashSet<>();
 
         for (Role role : user.getRoles()) {
             roleNames.add(role.getRoleName());
@@ -62,5 +68,15 @@ public class BaseServiceImpl implements BaseService {
     @Override
     public User queryUniqueUser(String username) {
         return userDao.getUserByPrincipal(username);
+    }
+
+    @Override
+    public List<Permission> listAllPermissions() {
+        return userDao.listAllPermissions();
+    }
+
+    @Override
+    public Role getRoleByRoleName(String roleName) {
+        return userDao.getRoleByRoleName(roleName);
     }
 }

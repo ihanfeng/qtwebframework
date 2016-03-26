@@ -6,14 +6,14 @@ import javax.persistence.*;
 import java.util.Set;
 
 /**
- * Created by ZML on 2015/8/7.
+ * 用户详情表
  */
 
 @Entity
-@Table(name = "t_userDetail")
-public class UserDetail {
+@Table(name = "t_userinfo")
+public class UserInfo {
 
-    private String detailId;
+    private String infoId;
 
     private String nickName;
 
@@ -24,15 +24,15 @@ public class UserDetail {
     private User user;
 
     @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid")
-    @Column(name = "detail_id")
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @Column(name = "info_id")
     public String getDetailId() {
-        return detailId;
+        return infoId;
     }
 
     public void setDetailId(String detailId) {
-        this.detailId = detailId;
+        this.infoId = detailId;
     }
 
     public String getNickName() {
@@ -54,7 +54,7 @@ public class UserDetail {
     }
 
     @OneToMany(targetEntity = Contacts.class)
-    @JoinColumn(name = "detail_id")
+    @JoinColumn(name = "info_id")
     public Set<Contacts> getContacts() {
         return contacts;
     }
