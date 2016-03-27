@@ -10,6 +10,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "t_dictType")
+@Cacheable
 public class DictType {
     //记录ID
     private String typeId;
@@ -44,7 +45,7 @@ public class DictType {
     public void setParentType(DictType parentType) {
         this.parentType = parentType;
     }
-
+    @Column(name = "type_name")
     public String getTypeName() {
         return typeName;
     }

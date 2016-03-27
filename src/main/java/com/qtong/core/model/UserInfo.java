@@ -11,6 +11,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "t_userinfo")
+@Cacheable
 public class UserInfo {
     //记录ID
     private String infoId;
@@ -20,8 +21,6 @@ public class UserInfo {
     private Attachment avartar;
     //联系方式
     private Set<Contacts> contacts;
-
-    private User user;
 
     @Id
     @GeneratedValue(generator = "uuid2")
@@ -63,13 +62,4 @@ public class UserInfo {
         this.contacts = contacts;
     }
 
-    @OneToOne(targetEntity = User.class)
-    @JoinColumn(name = "user_id")
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 }

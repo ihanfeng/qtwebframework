@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Created by ZML on 2016/3/24.
  */
-public class UserAccessInterceptor implements HandlerInterceptor {
+public class UserAccessLoggerInterceptor implements HandlerInterceptor {
 
-    private static Logger logger = Logger.getLogger(UserAccessInterceptor.class);
+    private static Logger logger = Logger.getLogger(UserAccessLoggerInterceptor.class);
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {

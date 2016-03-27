@@ -10,6 +10,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "t_org")
+@Cacheable
 public class Organization {
     //id
     private String orgId;
@@ -52,7 +53,7 @@ public class Organization {
         this.deptPath = deptPath;
     }
 
-    @Column(name = "depn_level")
+    @Column(name = "dept_level")
     public int getDeptlevel() {
         return deptlevel;
     }

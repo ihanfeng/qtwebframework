@@ -1,7 +1,7 @@
 package com.qtong.core.dao.impl;
 
 import com.qtong.core.dao.IBaseDao;
-import com.qtong.core.model.Pager;
+import com.qtong.core.utils.Pager;
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Session;

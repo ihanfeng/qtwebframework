@@ -11,6 +11,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "t_dictionary")
+@Cacheable
 public class Dictionary {
     //记录ID
     private String dictId;

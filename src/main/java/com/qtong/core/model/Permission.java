@@ -3,12 +3,14 @@ package com.qtong.core.model;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.Set;
 
 /**
  * 权限表
  */
 @Entity
 @Table(name = "t_permission")
+@Cacheable
 public class Permission {
 
     public String permId;
@@ -16,6 +18,8 @@ public class Permission {
     private String name;
 
     private String expression;
+
+    private Set<Menu> menus;
 
     @Id
     @GenericGenerator(name = "uuid", strategy = "uuid")
@@ -44,5 +48,14 @@ public class Permission {
 
     public void setName(String name) {
         this.name = name;
+    }
+    @ManyToMany(targetEntity = Menu.class)
+    @JoinTable(name = "t_perm_menu",joinColumns = @JoinColumn(name = "perm_id"),inverseJoinColumns = @JoinColumn(name = "menu_id"))
+    public Set<Menu> getMenus() {
+        return menus;
+    }
+
+    public void setMenus(Set<Menu> menus) {
+        this.menus = menus;
     }
 }

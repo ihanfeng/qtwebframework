@@ -5,6 +5,7 @@ import com.qtong.core.dao.IBasicDao;
 import com.qtong.core.model.Permission;
 import com.qtong.core.model.Role;
 import com.qtong.core.model.User;
+import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
@@ -36,4 +37,19 @@ public class BasicDaoImpl extends BaseDao implements IBasicDao {
     public Role getRoleByRoleName(String roleName) {
         return (Role) getSession().createCriteria(Role.class).add(Restrictions.eq("roleName", roleName)).uniqueResult();
     }
+
+    @Override
+    public List<Role> getHasPermissionRoles(Permission permission) {
+
+        String hql = "select r from Role r inner join r.permissions as perm where perm.permId =:permission";
+
+        Session session = getSession();
+
+
+        List result = session.createQuery(hql).setString("permission", permission.getPermId()).list();
+
+
+        return result;
+    }
+
 }

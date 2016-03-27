@@ -10,7 +10,7 @@ import java.util.Set;
 /**
  * Created by ZML on 2016/3/24.
  */
-public interface BaseService {
+public interface BasicService {
 
     void createUser(User user);
 
@@ -25,4 +25,9 @@ public interface BaseService {
     List<Permission> listAllPermissions();
 
     Role getRoleByRoleName(String roleName);
+
+    List<Role> getHasPermissionRoles(Permission permission);
+
+
+
 }

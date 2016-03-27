@@ -9,6 +9,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "t_menu")
+@Cacheable
 public class Menu {
     //记录ID
     private String menuId;

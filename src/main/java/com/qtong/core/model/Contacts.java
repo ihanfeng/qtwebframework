@@ -10,6 +10,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "t_contacts")
+@Cacheable
 public class Contacts {
     //id
     private String contactId;

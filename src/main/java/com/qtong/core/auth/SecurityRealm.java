@@ -1,7 +1,7 @@
 package com.qtong.core.auth;
 
 import com.qtong.core.model.User;
-import com.qtong.core.service.BaseService;
+import com.qtong.core.service.BasicService;
 import org.apache.shiro.authc.AccountException;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -24,11 +24,11 @@ import javax.annotation.Resource;
  */
 public class SecurityRealm extends AuthorizingRealm {
 
-	private BaseService baseService;
+	private BasicService basicService;
 
 	@Resource
-	public void setBaseService(BaseService baseService) {
-		this.baseService = baseService;
+	public void setBasicService(BasicService basicService) {
+		this.basicService = basicService;
 	}
 
 	@Override
@@ -42,9 +42,9 @@ public class SecurityRealm extends AuthorizingRealm {
 
 			SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
 
-			authorizationInfo.setRoles(baseService.getUserRoleNames(username));
+			authorizationInfo.setRoles(basicService.getUserRoleNames(username));
 
-			authorizationInfo.setStringPermissions(baseService
+			authorizationInfo.setStringPermissions(basicService
 					.getUserPermissions(username));
 			return authorizationInfo;
 
@@ -61,11 +61,11 @@ public class SecurityRealm extends AuthorizingRealm {
 			AuthenticationToken authenticationToken)
 			throws AuthenticationException {
 		UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
-		User user = baseService.queryUniqueUser(token.getUsername());
+		User user = basicService.queryUniqueUser(token.getUsername());
 		if (user == null) {
 			throw new UnknownAccountException("该账户不存在");
 		}
-		if (!user.isEnable()) {
+		if (!user.isEnabled()) {
 			throw new LockedAccountException("该账户禁止登录");
 		}
 

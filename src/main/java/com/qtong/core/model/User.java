@@ -1,5 +1,6 @@
 package com.qtong.core.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -26,10 +27,11 @@ public class User {
     //该用户是否是活跃用户
     private boolean actived = true;
     //该用户是否允许登录
-    private boolean enable = true;
+    private boolean enabled = true;
     //该用户是否过期
     private boolean expired = false;
     //该账户创建时间
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date createTime = new Date();
     //该账户最后被修改时间
     private Date lastModified = new Date();
@@ -41,6 +43,9 @@ public class User {
     //加密用的盐值，在向前台写这个对象的时候，隐藏掉
     @JsonIgnore
     private String salt;
+
+    private UserInfo userInfo;
+
 
     //用户的角色集合
     @JsonIgnore
@@ -93,12 +98,12 @@ public class User {
         this.actived = actived;
     }
 
-    public boolean isEnable() {
-        return enable;
+    public boolean isEnabled() {
+        return enabled;
     }
 
-    public void setEnable(boolean enable) {
-        this.enable = enable;
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
     public boolean isExpired() {
@@ -151,6 +156,16 @@ public class User {
         this.lastModified = lastModified;
     }
 
+    @OneToOne(targetEntity = UserInfo.class)
+    @JoinColumn(name = "user_info_id")
+    public UserInfo getUserInfo() {
+        return userInfo;
+    }
+
+    public void setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -159,7 +174,7 @@ public class User {
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
                 ", actived=" + actived +
-                ", enable=" + enable +
+                ", enabled=" + enabled +
                 ", expired=" + expired +
                 ", createTime=" + createTime +
                 ", lastModified=" + lastModified +

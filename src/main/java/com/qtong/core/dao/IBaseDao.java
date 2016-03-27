@@ -1,6 +1,6 @@
 package com.qtong.core.dao;
 
-import com.qtong.core.model.Pager;
+import com.qtong.core.utils.Pager;
 import org.hibernate.Criteria;
 
 import java.io.Serializable;

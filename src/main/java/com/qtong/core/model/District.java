@@ -10,6 +10,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "t_district")
+@Cacheable
 public class District {
 
     public String distId;//id

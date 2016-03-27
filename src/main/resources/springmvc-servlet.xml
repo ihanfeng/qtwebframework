@@ -8,7 +8,7 @@
     <mvc:default-servlet-handler/>
     <mvc:annotation-driven>
         <!-- 处理responseBody 里面日期类型 -->
-        <mvc:message-converters>
+        <!--<mvc:message-converters>
             <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
                 <property name="objectMapper">
                     <bean class="com.fasterxml.jackson.databind.ObjectMapper">
@@ -20,7 +20,7 @@
                     </bean>
                 </property>
             </bean>
-        </mvc:message-converters>
+        </mvc:message-converters>-->
     </mvc:annotation-driven>
     <!--允许使用注解的方式-->
     <context:annotation-config/>
@@ -34,7 +34,7 @@
                   value="org.springframework.web.servlet.view.JstlView"/>
     </bean>
     <mvc:interceptors>
-        <bean id="userAccessInterceptor" class="com.qtong.core.web.interceptor.UserAccessInterceptor"></bean>
+        <bean id="userAccessInterceptor" class="com.qtong.core.web.interceptor.UserAccessLoggerInterceptor"></bean>
     </mvc:interceptors>
 
     <!--<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">-->

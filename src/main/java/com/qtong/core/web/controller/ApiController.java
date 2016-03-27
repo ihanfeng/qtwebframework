@@ -2,7 +2,7 @@ package com.qtong.core.web.controller;
 
 import com.qtong.core.model.Role;
 import com.qtong.core.model.User;
-import com.qtong.core.service.BaseService;
+import com.qtong.core.service.BasicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +18,7 @@ import java.util.Set;
 @RequestMapping("/api")
 public class ApiController {
     @Autowired
-    private BaseService baseService;
+    private BasicService basicService;
 
 
     @RequestMapping("/hello")
@@ -28,13 +28,15 @@ public class ApiController {
     User sayHello() {
 
         User admin = new User();
-        admin.setUsername("hello" + System.currentTimeMillis());
+        String username="hello" + System.currentTimeMillis();
+        admin.setUsername(username);
         admin.setPassword("hello");
         Set<Role> roles = new HashSet<>();
-        Role system = baseService.getRoleByRoleName("system");
+        Role system = basicService.getRoleByRoleName("system");
         roles.add(system);
         admin.setRoles(roles);
-        baseService.createUser(admin);
-        return admin;
+        basicService.createUser(admin);
+        User hello=basicService.queryUniqueUser(username);
+        return hello;
     }
 }

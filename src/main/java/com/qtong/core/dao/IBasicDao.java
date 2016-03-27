@@ -17,4 +17,6 @@ public interface IBasicDao extends IBaseDao {
     List<Permission> listAllPermissions();
 
     Role getRoleByRoleName(String roleName);
+
+    List<Role> getHasPermissionRoles(Permission permission);
 }

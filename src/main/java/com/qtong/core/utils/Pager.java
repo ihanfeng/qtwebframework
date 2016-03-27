@@ -1,4 +1,4 @@
-package com.qtong.core.model;
+package com.qtong.core.utils;
 
 import org.springframework.util.Assert;
 
