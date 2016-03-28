@@ -8,7 +8,7 @@
     <mvc:default-servlet-handler/>
     <mvc:annotation-driven>
         <!-- 处理responseBody 里面日期类型 -->
-        <!--<mvc:message-converters>
+        <mvc:message-converters>
             <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
                 <property name="objectMapper">
                     <bean class="com.fasterxml.jackson.databind.ObjectMapper">
@@ -20,7 +20,7 @@
                     </bean>
                 </property>
             </bean>
-        </mvc:message-converters>-->
+        </mvc:message-converters>
     </mvc:annotation-driven>
     <!--允许使用注解的方式-->
     <context:annotation-config/>
@@ -36,21 +36,29 @@
     <mvc:interceptors>
         <bean id="userAccessInterceptor" class="com.qtong.core.web.interceptor.UserAccessLoggerInterceptor"></bean>
     </mvc:interceptors>
+    <bean class="com.qtong.core.web.interceptor.DefaultExceptionResolver">
+        <!--定义默认的异常处理页面，当该异常类型的注册时使用-->
+        <property name="defaultErrorView" value="error/500"></property>
+        <!--定义异常处理页面用来获取异常信息的变量名，默认名为exception -->
+        <property name="exceptionAttribute" value="exception"></property>
 
-    <!--<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">-->
-    <!--&lt;!&ndash;定义默认的异常处理页面，当该异常类型的注册时使用&ndash;&gt;-->
-    <!--<property name="defaultErrorView" value="error"></property>-->
-    <!--&lt;!&ndash;定义异常处理页面用来获取异常信息的变量名，默认名为exception &ndash;&gt;-->
-    <!--<property name="exceptionAttribute" value="ex"></property>-->
-    <!--&lt;!&ndash;      定义需要特殊处理的异常，用类名或完全路径名作为key，异常页名作为值&ndash;&gt;-->
-    <!--&lt;!&ndash;<property name="exceptionMappings">&ndash;&gt;-->
-    <!--&lt;!&ndash;<props>&ndash;&gt;-->
-    <!--&lt;!&ndash;</props>&ndash;&gt;-->
-    <!--&lt;!&ndash;</property>&ndash;&gt;-->
-    <!--&lt;!&ndash;<property name="statusCodes">&ndash;&gt;-->
-    <!--&lt;!&ndash;<map>&ndash;&gt;-->
-    <!--&lt;!&ndash;<entry key="404" value="/error/404"/>&ndash;&gt;-->
-    <!--&lt;!&ndash;</map>&ndash;&gt;-->
-    <!--&lt;!&ndash;</property>&ndash;&gt;-->
-    <!--</bean>-->
+        <property name="defaultStatusCode" value="500"></property>
+    </bean>
+
+    <!-- <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+     &lt;!&ndash;定义默认的异常处理页面，当该异常类型的注册时使用&ndash;&gt;
+     <property name="defaultErrorView" value="error"></property>
+     &lt;!&ndash;定义异常处理页面用来获取异常信息的变量名，默认名为exception &ndash;&gt;
+     <property name="exceptionAttribute" value="ex"></property>
+     &lt;!&ndash;      定义需要特殊处理的异常，用类名或完全路径名作为key，异常页名作为值&ndash;&gt;
+     &lt;!&ndash;<property name="exceptionMappings">&ndash;&gt;
+     &lt;!&ndash;<props>&ndash;&gt;
+     &lt;!&ndash;</props>&ndash;&gt;
+     &lt;!&ndash;</property>&ndash;&gt;
+     &lt;!&ndash;<property name="statusCodes">&ndash;&gt;
+     &lt;!&ndash;<map>&ndash;&gt;
+     &lt;!&ndash;<entry key="404" value="/error/404"/>&ndash;&gt;
+     &lt;!&ndash;</map>&ndash;&gt;
+     &lt;!&ndash;</property>&ndash;&gt;
+     </bean>-->
 </beans>

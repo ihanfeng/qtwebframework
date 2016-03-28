@@ -4,7 +4,6 @@
     <title>500</title>
 </head>
 <body>
-<%
-%>
+
 </body>
 </html>

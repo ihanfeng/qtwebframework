@@ -17,6 +17,7 @@ public class AuthController {
 
     @RequestMapping("/login")
     public ModelAndView login(ModelAndView modelAndView) {
+
         modelAndView.setViewName("main");
         return modelAndView;
     }

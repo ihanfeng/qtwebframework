@@ -129,10 +129,10 @@
         <error-code>401</error-code>
         <location>/WEB-INF/jsp/error/401.jsp</location>
     </error-page>
-    <error-page>
+   <!-- <error-page>
         <error-code>500</error-code>
         <location>/WEB-INF/jsp/error/500.jsp</location>
-    </error-page>
+    </error-page>-->
     <!--错误页面 end-->
     <!--强制为每个JSP配置 pageEncoding 为 UTF-8  START-->
     <jsp-config>

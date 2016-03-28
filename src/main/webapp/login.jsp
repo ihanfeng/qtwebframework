@@ -18,53 +18,15 @@
     <input type="password" placeholder="password" name="password">
     <input type="submit" value="提交">
 </form>
-<%--    ${applicationScope}--%>
-<p>
-<h3>applicationScope</h3>
-<c:forEach items="${applicationScope.keySet()}" var="key">
-    ${key}<br/>
-</c:forEach>
-</p>
-<p>-------------------------------</p>
-<p>
-<h3>requestScope</h3>
-<c:forEach items="${requestScope.keySet()}" var="key">
-    ${key}<br/>
-</c:forEach>
-</p>
-
-<p>-------------------------------</p>
-<p>
-<h3>sessionScope</h3>
-    <c:forEach items="${sessionScope.keySet()}" var="key">
-        ${key}<br/>
-    </c:forEach>
-</p>
-<p>-------------------------------</p>
-<p>
-<h3>pageScope</h3>
-<c:forEach items="${pageScope.keySet()}" var="key">
-    ${key}<br/>
-</c:forEach>
-</p>
-
-<p>-------------------------------</p>
-<p>
-<h3>param</h3>
-<c:forEach items="${param.keySet()}" var="key">
-    ${key}<br/>
-</c:forEach>
-</p>
-
-<p>-------------------------------</p>
-<p>
-<h3>header</h3>
-<c:forEach items="${ header.keySet()}" var="key">
-    ${key}<br/>
-</c:forEach>
-</p>
-
-<p>-------------------------------</p>
 <p>${shiroLoginFailure}</p>
+<c:if test="${'org.apache.shiro.authc.UnknownAccountException'.equals(shiroLoginFailure)}">
+    该账户不存在
+</c:if>
+<c:if test="${'org.apache.shiro.authc.LockedAccountException'.equals(shiroLoginFailure)}">
+    该账户被禁止登录
+</c:if>
+<c:if test="${'org.apache.shiro.authc.IncorrectCredentialsException'.equals(shiroLoginFailure)}">
+    密码错误
+</c:if>
 </body>
 </html>
