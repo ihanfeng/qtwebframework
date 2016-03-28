@@ -30,7 +30,7 @@ public class InitController {
 
     @RequestMapping("/init")
     private ModelAndView initDatabase(ModelAndView modeAndView) {
-        if (basicService.listAllPermissions() != null) {
+        if (basicService.listAllPermissions() == null || basicService.listAllPermissions().size()==0 ) {
             initPermissions();
             initRoles();
             createAdministrator();
@@ -55,13 +55,13 @@ public class InitController {
         Role system = new Role();
         system.setRoleName(SYSTEM);
         system.setPermissions(basicService.listAllPermissions());
-        basicService.create(system);
+        basicService.saveOrUpdateBean(system);
     }
 
     private void initPermissions() {
         Permission system = new Permission();
         system.setExpression(SYSTEM);
         system.setName("system");
-        basicService.create(system);
+        basicService.saveOrUpdateBean(system);
     }
 }

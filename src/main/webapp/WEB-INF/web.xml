@@ -34,46 +34,46 @@
 
     <!--静态资源不再由spring mvc 拦截  start-->
     <servlet-mapping>
-    <servlet-name>default</servlet-name>
-    <url-pattern>*.ico</url-pattern>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.ico</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-    <servlet-name>default</servlet-name>
-    <url-pattern>*.jpg</url-pattern>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.jpg</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-    <servlet-name>default</servlet-name>
-    <url-pattern>*.png</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-    <servlet-name>default</servlet-name>
-    <url-pattern>*.woff</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-    <servlet-name>default</servlet-name>
-    <url-pattern>*.woff2</url-pattern>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.png</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
-    <servlet-name>default</servlet-name>
-    <url-pattern>*.svg</url-pattern>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.woff</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-    <servlet-name>default</servlet-name>
-    <url-pattern>*.ttf</url-pattern>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.woff2</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.svg</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-    <servlet-name>default</servlet-name>
-    <url-pattern>*.otf</url-pattern>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.ttf</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-    <servlet-name>default</servlet-name>
-    <url-pattern>*.js</url-pattern>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.otf</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-    <servlet-name>default</servlet-name>
-    <url-pattern>*.css</url-pattern>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.js</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.css</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>default</servlet-name>
@@ -124,6 +124,14 @@
     <error-page>
         <error-code>403</error-code>
         <location>/WEB-INF/jsp/error/403.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>401</error-code>
+        <location>/WEB-INF/jsp/error/401.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/WEB-INF/jsp/error/500.jsp</location>
     </error-page>
     <!--错误页面 end-->
     <!--强制为每个JSP配置 pageEncoding 为 UTF-8  START-->

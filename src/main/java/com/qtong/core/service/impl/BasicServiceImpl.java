@@ -10,6 +10,7 @@ import com.qtong.core.utils.EndecryptUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -40,8 +41,13 @@ public class BasicServiceImpl implements BasicService {
     }
 
     @Override
-    public void create(Object object) {
-        basicDao.save(object);
+    public void saveOrUpdateBean(Object object) {
+        basicDao.saveOrUpdate(object);
+    }
+
+    @Override
+    public Object getBeanById(Class clazz, Serializable id) {
+        return basicDao.get(clazz, id);
     }
 
     @Override
@@ -62,7 +68,20 @@ public class BasicServiceImpl implements BasicService {
 
     @Override
     public Set<String> getUserPermissions(String username) {
-        return null;
+
+        User user = this.queryUniqueUser(username);
+
+        if (user == null) {
+            return null;
+        }
+        Set<String> permissionExpressions = new HashSet<>();
+
+        for (Role role : user.getRoles()) {
+            for (Permission permission : role.getPermissions()) {
+                permissionExpressions.add(permission.getExpression());
+            }
+        }
+        return permissionExpressions;
     }
 
     @Override

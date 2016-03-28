@@ -4,6 +4,7 @@ import com.qtong.core.model.Permission;
 import com.qtong.core.model.Role;
 import com.qtong.core.model.User;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 
@@ -14,7 +15,9 @@ public interface BasicService {
 
     void createUser(User user);
 
-    void create(Object object);
+    void saveOrUpdateBean(Object object);
+
+    Object getBeanById(Class clazz, Serializable id);
 
     Set<String> getUserRoleNames(String username);
 
@@ -27,7 +30,6 @@ public interface BasicService {
     Role getRoleByRoleName(String roleName);
 
     List<Role> getHasPermissionRoles(Permission permission);
-
 
 
 }

@@ -43,8 +43,8 @@ public class User {
     //加密用的盐值，在向前台写这个对象的时候，隐藏掉
     @JsonIgnore
     private String salt;
-
-    private UserInfo userInfo;
+    @JsonIgnore
+    private AbstractUserInfo userInfo;
 
 
     //用户的角色集合
@@ -156,13 +156,13 @@ public class User {
         this.lastModified = lastModified;
     }
 
-    @OneToOne(targetEntity = UserInfo.class)
+    @OneToOne
     @JoinColumn(name = "user_info_id")
-    public UserInfo getUserInfo() {
+    public AbstractUserInfo getUserInfo() {
         return userInfo;
     }
 
-    public void setUserInfo(UserInfo userInfo) {
+    public void setUserInfo(AbstractUserInfo userInfo) {
         this.userInfo = userInfo;
     }
 

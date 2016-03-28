@@ -90,7 +90,7 @@
         <property name="securityManager" ref="securityManager"/>
         <property name="loginUrl" value="/login.jsp"/>
         <property name="successUrl" value="/auth/login"/>
-        <!--<property name="unauthorizedUrl" value="/"></property>-->
+        <property name="unauthorizedUrl" value="/auth/error.do"></property>
         <property name="filters">
             <util:map>
                 <entry key="authc" value-ref="formAuthenticationFilter"/>

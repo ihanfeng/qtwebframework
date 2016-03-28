@@ -3,6 +3,7 @@ package com.qtong.core.service;
 import com.qtong.core.model.Permission;
 import com.qtong.core.model.Role;
 import com.qtong.core.model.User;
+import com.qtong.core.model.UserInfoInheritDemo;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -30,11 +31,11 @@ public class BasicServiceTest {
     public void test() {
         BasicService basicService = context.getBean(BasicService.class);
 
-//        initPermissions();
-//
-//        initRoles();
-//
-//        createAdministrator();
+        initPermissions();
+
+        initRoles();
+
+        createAdministrator();
 
         Role role = basicService.getRoleByRoleName("system");
 
@@ -58,6 +59,29 @@ public class BasicServiceTest {
 
     }
 
+    @Test
+    public void getUserInfo(){
+        BasicService basicService = context.getBean(BasicService.class);
+
+        User user=basicService.queryUniqueUser("admin");
+
+//         UserInfoInheritDemo demo=new UserInfoInheritDemo();
+//
+//        demo.setAge(11);
+//
+//        demo.setNickName("管理员");
+//
+//        user.setUserInfo(demo);
+//
+//        basicService.saveOrUpdateBean(demo);
+//
+//        basicService.saveOrUpdateBean(user);
+//
+//        user=basicService.queryUniqueUser("admin");
+
+        System.out.println(user.getUserInfo().toString());
+    }
+
 
     private void createAdministrator() {
         User admin = new User();
@@ -74,13 +98,13 @@ public class BasicServiceTest {
         Role system = new Role();
         system.setRoleName("system");
         system.setPermissions(basicService.listAllPermissions());
-        basicService.create(system);
+        basicService.saveOrUpdateBean(system);
     }
 
     private void initPermissions() {
         Permission system = new Permission();
         system.setExpression("system");
         system.setName("system");
-        basicService.create(system);
+        basicService.saveOrUpdateBean(system);
     }
 }
