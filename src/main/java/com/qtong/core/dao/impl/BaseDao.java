@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * Created by ZML on 2016/1/15.
  */
-public class BaseDao implements IBaseDao {
+public abstract class BaseDao implements IBaseDao {
 
     // 日志输出类
     protected static final Logger LOGGER = Logger.getLogger(BaseDao.class);
