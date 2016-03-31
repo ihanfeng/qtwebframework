@@ -16,7 +16,8 @@
     <!--启用注解功能-->
     <context:annotation-config/>
     <context:component-scan base-package="com.qtong">
-        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+        <!--此配置项标明不会扫描有Controller注解的类，但是由于shiro的注解一般放在controller里面，所以还是要扫描这些-->
+        <!--<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>-->
     </context:component-scan>
 
 
@@ -38,6 +39,7 @@
         </bean>-->
     <tx:advice transaction-manager="transactionManager" id="txAdvice">
         <tx:attributes>
+            <!--propagation 是事务传播的属性，主要是配置service调用service的时候事务的开启方式-->
             <tx:method name="do*" propagation="REQUIRED" read-only="false"
                        rollback-for="Exception"/>
             <tx:method name="del*" propagation="REQUIRED" read-only="false"
